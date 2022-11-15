@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-const todoList = require("../todos");
+const todoList = require("../todo");
 const { all, markAsComplete, add } = todoList();
 // eslint-disable-next-line no-undef
 describe("Todo Test suite", () => {
