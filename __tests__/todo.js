@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 
 const todoList = require("../todo");
-const { all, markAsComplete, add } = todoList();
+const { all, markAsComplete, add, overdue, dueToday, dueLater } = todoList();
+let today = new Date().toISOString().split("T")[0];
 // eslint-disable-next-line no-undef
 describe("Todo Test suite", () => {
   // eslint-disable-next-line no-undef
@@ -31,4 +32,32 @@ describe("Todo Test suite", () => {
 
     expect(all[0].completed).toBe(true);
   });
+  test("todos that are overdue", () => {
+    let overdues = overdue();
+
+    expect(
+      overdues.every((todo) => {
+        return todo.dueDate < today;
+      })
+    ).toBe(true);});
+test("todos that are duetoday", () => {
+        let duetodays = dueToday();
+    
+        expect(
+          duetodays.every((todo) => {
+            return todo.dueDate == today;
+          })
+        ).toBe(true);
+
+  });
+  test("todos that are duelater", () => {
+    let duelaters = dueLater();
+
+    expect(
+      duelaters.every((todo) => {
+        return todo.dueDate > today;
+      })
+    ).toBe(true);
+
+});
 });
